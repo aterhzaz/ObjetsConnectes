@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<head>
+	<title>Objets Connectés</title>
+    <meta charset="UTF-8"/>
+    <script type="text/javascript" src="/js/socket.io.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-modal.js"></script>
+     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+     <style>
+       #map { height: 800px; 
+              width: 800px;
+              margin: 0px;
+              padding: 0px;
+            }
+     </style>
+
+
+    <style type="text/css">
+	      .list-group-item img {
+	        width: 120px;
+	        margin: 0 16px;
+	      }
+	      .list-group-item .details {
+	        margin: 16px;
+	      }
+    </style>
+
+ 
+	<script type="text/javascript" src="js/javascript.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	</head>
+
+	<body class="list-group" ng-app="tabApp" ng-controller="tableCtrl as ctrl">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Objets Connectés</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" ng-model="nameFilter" placeholder="Rechercher...">
+          </form>
+        </div>
+      </div>
+    </nav><br><br><br>
+
+		<div>
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a href="#lieux"><button type="button" class="btn btn-success">Lieux</button></a>
+				</li>
+				<li>
+					<a href="#tables"><button type="button" class="btn btn-warning">Tables</button></a>
+				</li>
+				<li>
+					<a href="#boissons"><button type="button" class="btn btn-primary">Boissons</button></a>
+				</li>
+				<li>
+					<a href="#futs"><button type="button" class="btn btn-danger">Fûts</button></a>
+				</li>
+			</ul>	
+		</div>
+
+		<section id="tables" class="tab-content hide">
+	        <div class="tab-pane active" id="tables" ng-controller="tableCtrl as ctlr "  >
+	          <div id="table-{{table.name}}" class="list-group-item" >
+	            <table align="center" width="90%" >
+	              <tr>
+	                <td width="29%" ng-repeat="tab in tables | filter: nameFilter" align="center" >
+
+		                   <h2 style="margin-top:50px;">{{tab.nom}}</h2>
+		                  
+		                  <br><br> <img ng-src="{{tab.image}}" style=" margin:30px;;" align='center' />	<br>
+
+						  <div class="btn-toolbar" role="toolbar" >
+						      <div class="btn-group">
+							     <button type="button" class="btn btn-default" data-toggle="Detail" title="Detail" ng-click="custom=!custom"> 
+							     	Détails 
+						         </button>
+						      </div>
+						  </div>
+
+						   <div  ng-hide="custom">
+			                  <h5><strong> Lieu  : </strong>  {{tab.lieu.nom}}</h5>
+			                  <h5><strong>  Mac :</strong>  {{tab.mac}}</h5>
+			                  <h5><strong> Etat :</strong>{{tab.etat}}  </h5>
+
+			        <button type="button" ng-click="changerEtat(tab, '0')" ng-class="{ 'btn-success':tab.etat == 'FREE'}" class="btn"> FREE </button>
+					<button type="button" ng-click="changerEtat(tab, '1')" ng-class="{ 'btn-info':tab.etat == 'TAG'}" class="btn"> TAG </button>
+					<button type="button" ng-click="changerEtat(tab, '2')" ng-class="{ 'btn-warning':tab.etat == 'OFF'}" class="btn"> OFF </button>
+					<button type="button" ng-click="changerEtat(tab, '3')" ng-class="{ 'btn-danger':tab.etat == 'DISCONNECTED'}" class="btn"> DISCONNECTED </button>
+		                
+			                  <h5>Fût contient {{tab.fut.volume}} L de {{tab.fut.boisson.fabriquant}}</h5>
+	                          <br>
+                     	 </div>		                  	                  
+	                </td>
+	              </tr>
+	            </table>
+	          </div>
+	        </div>
+		</section>
+
+
+		<section id="boissons" class="tab-content hide">
+			 <div class="tab-pane active" id="boissons" ng-controller="BoissonsCtrl as ctlr "  >
+	          <div id="boisson-{{boisson.name}}" class="list-group-item" >
+	            <table  align="center" width="90%">
+	              <tr>
+	                <td width="29%" ng-repeat="b in Boissons | filter: nameFilter"  align="center" >
+		                  <h2 style="margin-top:50px;">{{b.fabriquant}}</h2>
+
+		                  <img ng-src="{{b.logo}}"  align='center' style="margin:50px;"/>	<br>
+                          <br>
+						  <div class="btn-toolbar" role="toolbar" >
+						      <div class="btn-group">
+							      <button type="button" class="btn btn-default" data-toggle="Detail" title="Detail" ng-click="custom=!custom"> 
+							     	Détails 
+						         </button>
+						        
+						      </div>
+						  </div>
+						   <div  ng-hide="custom">
+			                  <h5><strong> Type  : </strong> {{b.type}}</h5>
+			                  <h5><strong> Description  :</strong>  {{b.description}}</h5>
+		             	  </div>		                  	                  
+	                </td>
+	              </tr>
+	            </table>
+	          </div>
+	        </div>
+		</section>
+
+		<section id="futs" class="tab-content hide">
+			 <div class="tab-pane active" id="futs" ng-controller="FutCtrl as ctlr "  >
+	          <div id="fut-{{fut.id}}" class="list-group-item" >
+	            <table  align="center" width="90%">
+	              <tr align="center">
+	                <td width="29%" ng-repeat="f in Futs | filter: nameFilter"   >
+
+
+	                	<h3 style="margin-top:50px;">Fût {{f.id}}</h3>
+	                	<img src='./photo/fut.jpg' align='center' style="margin:50px;"/>
+		                  
+						
+                          <br>
+						  <div class="btn-toolbar" role="toolbar" >
+						      <div class="btn-group" >
+							     <button type="button" class="btn btn-default" data-toggle="Detail" title="Detail" ng-click="custom=!custom"> 
+							     	Détails 
+						         </button>
+						        
+						      </div>
+
+						  </div>
+						   <div  ng-hide="custom">
+						         	<h5><strong>Volume :</strong> {{f.volume}} L </h5>
+		                  			<h5><strong>Boisson  :</strong> {{f.boisson.fabriquant}}</h5>
+
+		                   </div>
+
+		                  	                  
+	                </td>
+	              </tr>
+	            </table>
+	          </div>
+	        </div>
+		</section>
+		<div align="center" style="margin-top:40px" >
+		<section id="lieux" class="tab-content active" >
+	        <div id="map" ></div>
+            <script>
+				   var map = L.map('map',{
+				   		center: [48.4000000, -4.4833300],
+					    zoom: 8
+					});
+			
+				   // add an OpenStreetMap tile layer
+				   L.tileLayer('http://{s}.tiles.mapbox.com/v3/hindetta.k6ekam38/{z}/{x}/{y}.png', {
+				    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+				    maxZoom: 18
+					}).addTo(map);
+
+
+					// add a marker in the given location, attach some popup content to it and open the popup
+					L.marker([48.4000000  , -4.4833300]).addTo(map)
+					    .bindPopup('2.4 Rue des Archives C302. Géant ')
+					    .openPopup();
+
+					
+					// add a marker in the given location, attach some popup content to it and open the popup
+					L.marker([48  , -4.1]).addTo(map)
+					    .bindPopup('Rue du Chevalier Blanc N°12. QuimperBoisson')
+					    .openPopup();
+   			</script>
+
+		</section>
+	</div>
+	</body>
+	<hr>
+	<FOOTER align="center" style="margin-bottom:40px">
+		<b >Application de gestion d'Objets Connectés</b>
+	</FOOTER>
+</html>
