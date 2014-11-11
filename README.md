@@ -6,27 +6,28 @@ Projet rélisé dans le carde de l'UE : Langague du WEB
 L’application de gestion d'objets connectés ( ie : Les tables de distribution de boissons) est une application web de type  « single page application » qui permet  le suivi des tables.
 La réalisation de cette application implique l’architecture suivante : 
 
-Partie Serveur : 
+1-Partie Serveur : 
 
-Technologie utilisée : 
+1.1Technologie utilisée : 
 Le serveur web est créé avec Node.js qui permet de définir le modèle de données et aussi gérer les changements effectués et les reproduire chez les autres clients web.
 
-Les modules Node.js utilisés : 
+1.2Les modules Node.js utilisés : 
 
 Express : Facilité de syntaxe.
 
 Socket.io : Gestion de la communication bidirectionnelle entre le client et le serveur.
 
-Modèle de données : 
+1.3Modèle de données : 
 
 Notre modèle de données est représenté par des fonctions JavaScript ayant la structure similaire à celle de l’orienté objet, ce qui permet de créer autant d’instance et les envoyer à notre contrôleur en format JSON.
-Contrôleur : 
 
-Technologie utilisée : 
+2.Contrôleur : 
+
+2.1Technologie utilisée : 
 
 Cette partie est réalisée avec le framework Angular.js  qui a pour but de simplifier la syntaxe de JavaScript, et de combler les faiblesses de ce dernier en lui ajoutant de nouvelles fonctionnalités. Ceci permet notamment de faciliter la réalisation d'applications web monopages.
 
-Contrôleurs crées :
+2.2Contrôleurs crées :
 
 TableCtrl : Permet de récupérer des données des tables depuis le serveur et les envoyer aux clients, il permet aussi le changement d’état de la table.
 
@@ -40,7 +41,7 @@ Partie Vue :
 
 La partie présentation de l’application est réalisée avec Bootstrap et JQuery.
 
-Les fonctionnalitées developpées sont : 
+3.Les fonctionnalitées developpées sont : 
 
 * Affichage des tables , boissons , futs et lieux.
 * Possibilité de recherche par nom des tables , boissons et futs.
