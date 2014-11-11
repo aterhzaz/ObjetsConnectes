@@ -7,12 +7,18 @@ L’application de gestion d'objets connectés ( ie : Les tables de distribution
 La réalisation de cette application implique l’architecture suivante : 
 
 Partie Serveur : 
+
 Technologie utilisée : 
 Le serveur web est créé avec Node.js qui permet de définir le modèle de données et aussi gérer les changements effectués et les reproduire chez les autres clients web.
-Les modules Node.js  utilisés : 
+
+Les modules Node.js utilisés : 
+
 Express : Facilité de syntaxe.
+
 Socket.io : Gestion de la communication bidirectionnelle entre le client et le serveur.
+
 Modèle de données : 
+
 Notre modèle de données est représenté par des fonctions JavaScript ayant la structure similaire à celle de l’orienté objet, ce qui permet de créer autant d’instance et les envoyer à notre contrôleur en format JSON.
 Contrôleur : 
 
@@ -23,8 +29,11 @@ Cette partie est réalisée avec le framework Angular.js  qui a pour but de simp
 Contrôleurs crées :
 
 TableCtrl : Permet de récupérer des données des tables depuis le serveur et les envoyer aux clients, il permet aussi le changement d’état de la table.
+
 BoissonCtrl : Permet de récupérer des données de boissons depuis le serveur et les afficher.
+
 FutsCtrl : Permet de récupérer les données de Fûts depuis le serveur et les afficher.
+
 LieuCtrl : Permet de récupérer les données de Lieux de disponibilité de boissons.
 
 Partie Vue : 
