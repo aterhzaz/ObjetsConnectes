@@ -49,7 +49,8 @@ La partie présentation de l’application est réalisée avec Bootstrap et JQue
 * Integration d'une carte avec marqueures qui affiche la position des lieux( pas encore affiné : passage de position en dur )
 
 USAGE : node server.js
-        http://localhost:8081
+
+       Lien :  http://localhost:8081
 
 
 
