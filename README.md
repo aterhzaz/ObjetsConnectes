@@ -1,7 +1,7 @@
 ObjetsConnectes
 ===============
 
-Projet rélisé dans le carde de l'UE : Langague du WEB
+Projet realisé dans le carde de l'UE : Langague du WEB
 
 L’application de gestion d'objets connectés ( ie : Les tables de distribution de boissons) est une application web de type  « single page application » qui permet  le suivi des tables.
 La réalisation de cette application implique l’architecture suivante : 
