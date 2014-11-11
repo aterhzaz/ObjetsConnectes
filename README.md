@@ -35,7 +35,7 @@ BoissonCtrl : Permet de récupérer des données de boissons depuis le serveur e
 
 FutsCtrl : Permet de récupérer les données de Fûts depuis le serveur et les afficher.
 
-LieuCtrl : Permet de récupérer les données de Lieux de disponibilité de boissons.
+LieuCtrl : Permet de récupérer les données de Lieux sont les boissons sont disponibles.
 
 Partie Vue : 
 
